@@ -1,0 +1,70 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    localhost                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: micarras <micarras@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/06 13:27:01 by micarras          #+#    #+#              #
+#    Updated: 2020/02/06 15:30:27 by micarras         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+server {
+	listen 80;
+	listen [::]:80;
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	include snippets/self-signed.conf;
+	include snippets/ssl-params.conf;
+
+	root /var/www/html;
+	index index.php index.html index.htm;
+
+	server_name localhost;
+
+	location / {
+		autoindex on;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+	}
+
+	location /phpmyadmin {
+		root /usr/share/;
+		index index.php index.html index.htm;
+
+		location ~ ^/phpmyadmin/(.+\.php)$ {
+			try_files $uri =404;
+			root /usr/share/;
+			fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			include /etc/nginx/fastcgi_params;
+		}
+
+		location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+			root /usr/share/;
+		}
+	}
+
+	location /wordpress {
+		root /usr/share;
+		index index.php index.html index.htm;
+
+		location ~ ^/wordpress/(.+\.php)$ {
+			try_files $uri =404;
+			root /usr/share/;
+			fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			include /etc/nginx/fastcgi_params;
+		}
+
+		location ~* ^/wordpress/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+			root /usr/share/;
+		}
+	}
+}
