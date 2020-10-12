@@ -6,7 +6,7 @@
 /*   By: micarras <micarras@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 15:45:41 by micarras          #+#    #+#             */
-/*   Updated: 2020/06/17 10:49:52 by micarras         ###   ########.fr       */
+/*   Updated: 2020/10/12 13:07:30 by micarras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,39 +25,39 @@
 
 typedef enum	e_keycode
 {
-	Escape = 0xFF1B,
-	Q = 0x071,
-	E = 0x065,
-	W = 0x077,
-	S = 0x073,
-	A = 0x061,
-	D = 0x064,
-	Left = 0xFF51,
-	Right = 0xFF53,
-	Up = 0xFF52,
-	Down = 0xFF54,
-	Minus = 0x02D,
-	Plus = 0x03D,
-	Comma = 0x02C,
-	Dot = 0x02E,
-	F1 = 0xFFBE,
-	F2 = 0xFFBF,
-	F3 = 0xFFC0,
-	F4 = 0xFFC1,
-	F5 = 0xFFC2,
-	F6 = 0xFFC3,
-	R = 0x072,
-	T = 0x074,
-	Y = 0x079,
-	F = 0x066,
-	G = 0x067,
-	H = 0x068,
-	U = 0x075,
-	I = 0x069,
-	O = 0x06F,
-	J = 0x06A,
-	K = 0x06B,
-	L = 0x06C,
+	Escape = 0x35,
+	Q = 0x0C,
+	E = 0x0E,
+	W = 0x0D,
+	S = 0x01,
+	A = 0x00,
+	D = 0x02,
+	Left = 0x7B,
+	Right = 0x7C,
+	Up = 0x7E,
+	Down = 0x7D,
+	Minus = 0x1B,
+	Plus = 0x18,
+	Comma = 0x2B,
+	Dot = 0x2F,
+	F1 = 0x7A,
+	F2 = 0x78,
+	F3 = 0x63,
+	F4 = 0x76,
+	F5 = 0x60,
+	F6 = 0x61,
+	R = 0x0F,
+	T = 0x11,
+	Y = 0x10,
+	F = 0x03,
+	G = 0x05,
+	H = 0x04,
+	U = 0x20,
+	I = 0x22,
+	O = 0x1F,
+	J = 0x26,
+	K = 0x28,
+	L = 0x25,
 	None = -1
 }				t_keycode;
 

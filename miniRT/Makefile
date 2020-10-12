@@ -6,7 +6,7 @@
 #    By: micarras <micarras@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/11 20:09:13 by micarras          #+#    #+#              #
-#    Updated: 2020/06/17 10:47:39 by micarras         ###   ########.fr        #
+#    Updated: 2020/10/12 12:54:34 by micarras         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_SAVES =		./save/
 DIR_HEADERS =	./includes/
 DIR_SRCS =		./srcs/
 DIR_OBJS =		./
-LIBMLX =		libmlx.a
+LIBMLX =		libmlx.dylib
 LIBFT =			libft.a
 #SAVE =			-fsanitize=address
 SRC =			main.c \
@@ -100,11 +100,12 @@ OBJS =			$(SRCS:.c=.o)
 NAME =			miniRT
 all:			$(NAME)
 $(NAME) :		$(OBJS)
-				@make -C ./minilibx_opengl
+				@make -C ./minilibx_mms
 				@make -C ./libft
-				@mv ./minilibx_opengl/libmlx.a libmlx.a
+				@mv ./minilibx_mms/libmlx.dylib libmlx.dylib
 				@mv ./libft/libft.a libft.a
-				$(CC) $(FLAGS) -o $(NAME) -I $(DIR_HEADERS) $(OBJS) $(LIBFT) $(LIBMLX) -lm -pthread -lX11 -lXext
+				#$(CC) $(FLAGS) -o $(NAME) -I $(DIR_HEADERS) $(OBJS) $(LIBFT) $(LIBMLX) -lm -pthread -lX11 -lXext
+				$(CC) $(FLAGS) -o $(NAME) -I $(DIR_HEADERS) $(OBJS) $(LIBFT) $(LIBMLX) -lm -pthread
 %.o: %.c
 				@gcc $(FLAGS) $(CONFIG_FLAGS) -I $(DIR_HEADERS) -c $< -o $@
 				@echo "Compiled "$<" successfully!"
@@ -116,9 +117,9 @@ norme:
 clean:
 				$(RM) $(OBJS)
 fclean:				clean
-				@make clean -C ./minilibx_opengl
+				@make clean -C ./minilibx_mms
 				@make clean -C ./libft
-				$(RM) libmlx.a
+				$(RM) libmlx.dylib
 				$(RM) libft.a
 				$(RM) $(DIR_SAVES)*
 				$(RM) $(NAME)
